@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
+import connection.util
 
 public class Driver {
 
@@ -11,7 +12,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 			boolean x;
-			
+		
 			
 			
 			switch (mainMenu()) {
@@ -30,7 +31,7 @@ public class Driver {
 					String custUsername = sc.nextLine();
 					System.out.println("Password: ");
 					String custPassword = sc.nextLine();
-					//work on this part, may need to put whole switch case in loop
+					//c
 					do {
 						if (custUsername == "username" && custPassword == "password") {
 							x = false;
