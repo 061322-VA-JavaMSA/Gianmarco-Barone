@@ -1,18 +1,27 @@
 package project0ShopDriver;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
-import connection.util
+
 
 public class Driver {
 
 	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
 		
-			boolean x;
-		
+		String url = "jdbc:postgresql://localhost:5432/postgres";
+		String username = "postgres";
+		String password = "";
+		try {
+		Connection c = DriverManager.getConnection(url,username,password);
+		//put what it is you want to retrieve
+		System.out.println(c.getMetaData().getDriverName());
+		c.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+			
 			
 			
 			switch (mainMenu()) {
@@ -34,6 +43,7 @@ public class Driver {
 					//c
 					do {
 						if (custUsername == "username" && custPassword == "password") {
+							boolean x;
 							x = false;
 							System.out.println("Login Successful!");
 							System.out.println("What would you like to do today?");
@@ -41,7 +51,7 @@ public class Driver {
 						}else
 							System.out.println("Please enter valid credentials");
 							
-					} while (x = true); 
+					} while (true); 
 					
 					
 					
@@ -132,7 +142,7 @@ public class Driver {
 		
 	}
 	static String mainMenu() {
-		System.out.println("Welcome to the Animal House!");
+		System.out.println("Welcome to the (place holder name)!");
 		System.out.println("Are you a Customer or an Employee?");
 		System.out.println("1.Customer");
 		System.out.println("2.Employee");

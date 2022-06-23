@@ -8,25 +8,26 @@ employee_password varchar(30)
 drop table if exists product_inventory;
 create table product_inventory(
 product_id serial primary key,
-species varchar(30),
+product_name varchar(30),
 price int, 
 status varchar(30)
 );
-drop table if exists customer_login cascade;
-create table customer_login(
+drop table if exists customer_account cascade;
+create table customer_account(
 customer_id serial primary key,
 customer_username varchar(30),
 customer_password varchar(30)
 );
 drop table if exists customer_inventory;
 create table customer_inventory(
-customer_inventory_id serial references customer_login(customer_id),
-customer_inventory text
+customer_inventory_id serial references customer_account(customer_id),
+customer_inventory text,
+remaining_payments int
 );
 
 drop table if exists employee_processing;
 create table employee_processing(
-transaction_id serial primary key
-pending_transactions varchar(30) references product_inventory(status)
---make seperate table for product status/sales
+transaction_id serial primary key,
+pending_transactions varchar(30) references product inventory(status),
+customer_payments int references customer_inventory(remaining_payments)
 );
