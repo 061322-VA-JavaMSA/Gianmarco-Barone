@@ -1,28 +1,50 @@
 package project0ShopDriver;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 import java.util.Scanner;
+
+import project0ShopUtil.connectionUtil;
 
 
 public class Driver {
 
 	static Scanner sc = new Scanner(System.in);
-	public static void main(String[] args) {
+	public static void main(String[] args)   {
 		
-		String url = "jdbc:postgresql://localhost:5432/postgres";
-		String username = "postgres";
-		String password = "";
-		try {
-		Connection c = DriverManager.getConnection(url,username,password);
-		//put what it is you want to retrieve
-		System.out.println(c.getMetaData().getDriverName());
-		c.close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-			
-			
+		
+		try {Connection c = connectionUtil.connectionHardCoded();
+			//put what it is you want to retrieve
+			System.out.println(c.getMetaData().getDriverName());
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		  try {Connection c = connectionUtil.connectionHardCoded();
+	
+	            Statement statement = c.createStatement();
+	            String sql = "SELECT * from customer_account;";
+	 	            ResultSet result = statement.executeQuery(sql);
+	 	            // Condition check using hasNext() method which
+	            // holds true till there is single element
+	            // remaining in List
+	            while (result.next()) {
+	 
+	                System.out.println(
+	                    "Username: " + result.getString("customer_username"));
+	                System.out.println(
+	                    "Password:" + result.getString("customer_password"));
+	            }
+	        }
+	 
+	        catch (SQLException e) {
+	 	            System.out.println(e);
+	        }
+	    
 			
 			switch (mainMenu()) {
 			case "1":
@@ -152,4 +174,24 @@ public class Driver {
 		
 		return whichUser;
 	}
+
+	/*try {Connection c = connectionUtil.connectionHardCoded();
+	//put what it is you want to retrieve
+	Statement statement = c.createStatement();
+	String sql = "SELECT * customer_account";
+	ResultSet result = statement.executeQuery(sql);
+	
+	while (result.next()) {
+		//System.out.println("Customer Id: " + result.getString("customer_id"));
+		System.out.println("Username: " + result.getString("customer_username"));
+		System.out.println("Password: " + result.getString("customer_password"));
+		
+		
+		
+	}
+	System.out.println(sql);
+	c.close();
+} catch (SQLException e) {
+	e.printStackTrace();
+}*/
 }

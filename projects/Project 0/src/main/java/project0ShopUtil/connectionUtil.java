@@ -1,30 +1,29 @@
 package project0ShopUtil;
-
-import java.io.IOException;
 import java.sql.Connection;
+import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class connectionUtil {
-	public static Connection c;
+	 private static Connection c;
 	
-	public static Connection getConnectionFromFile() throws SQLException, IOException {
-		/*Properties prop = new Properties();
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		prop.load(loader.getResourceAsStream("connection.properties"));
+	public static Connection connectionHardCoded() throws SQLException {
 		
-		String url = prop.getProperty("url");
-		String username = prop.getProperty("username");
-		String password = prop.getProperty("password");
+		String url = "jdbc:postgresql://localhost:5432/postgres";
+		String username = "postgres";
+		String password = "";
 		
 		if (c == null || c.isClosed()) {
 			c = DriverManager.getConnection(url, username, password);
 			
 		}
-		return c;*/
+		return c;
+		
+	}
 	
-		/*String url = "jdbc:postgresql://localhost:5432/postgres";
+	
+	/*String url = "jdbc:postgresql://localhost:5432/postgres";
 		String username = "postgres";
 		String password = "";
 		try {
@@ -37,6 +36,7 @@ public class connectionUtil {
 	}
 	
 	}*/
+	
 }
 	// this line allows the reuse of c instead of creating new connections
 	//private static Connection c;

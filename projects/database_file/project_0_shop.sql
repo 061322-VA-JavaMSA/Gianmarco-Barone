@@ -18,6 +18,10 @@ customer_id serial primary key,
 customer_username varchar(30),
 customer_password varchar(30)
 );
+
+insert into customer_account  (customer_id, customer_username, customer_password) values (1, 'customer1', 'password1');
+insert into customer_account  (customer_id, customer_username, customer_password) values (2, 'customer2', 'password2');
+insert into customer_account  (customer_id, customer_username, customer_password) values (3, 'customer3', 'password3');
 drop table if exists customer_inventory;
 create table customer_inventory(
 customer_inventory_id serial references customer_account(customer_id),
