@@ -1,0 +1,15 @@
+body {
+
+    color: blue;
+
+}
+
+li {
+
+    display: inline;
+    color: rgb(229, 48, 8);
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}

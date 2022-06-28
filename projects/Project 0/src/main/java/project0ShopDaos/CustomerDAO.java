@@ -9,7 +9,7 @@ public interface CustomerDAO {
 	customer createCustomer(customer C);
 	customer pullCustomerId(int id);
 	List<customer> pullCustomers();
-	customer pullBycustomer(String username);
+	customer pullBycustomer(String username,String password);
 	boolean updateCustomer(customer C);
 	boolean deleteCustomer(int id);
 	

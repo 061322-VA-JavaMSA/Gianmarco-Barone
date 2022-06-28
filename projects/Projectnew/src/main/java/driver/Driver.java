@@ -1,11 +1,10 @@
 package driver;
 
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 import daos.OfferDAO;
 import daos.OfferPostgres;
@@ -35,7 +34,7 @@ public class Driver {
 	static OfferDAO od = new OfferPostgres();
 	static UserInventoryDAO uid = new UserInventoryPostgres();
 	static User u;
-	private static Logger log = LogManager.getLogger(Driver.class);
+	
 	
 	public static void main(String[] args) {
 		

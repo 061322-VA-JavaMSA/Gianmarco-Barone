@@ -10,31 +10,68 @@ import java.util.List;
 import project0ShopModels.customer;
 import project0ShopUtil.connectionUtil;
 
-public class CustomerPostgres {
+public class CustomerPostgres implements CustomerDAO {
 
-	
-	public List<customer> pullCustomers() {
-		String sql = "select * from customer_account;";
-		List<customer> users = new ArrayList<>();
+	@Override
+	public customer createCustomer(customer C) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public customer pullCustomerId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public  List<customer> pullCustomers() {
+		String sql = "select * from customer_account";
+		List<customer> customer = new ArrayList<>();
 		
-		try(Connection c = connectionUtil.connectionHardCoded()){
-			// no user input taken, no need for prepared statement
-			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery(sql);
+		try {Connection c = connectionUtil.connectionHardCoded();
+			Statement statement = c.createStatement();
+			ResultSet result = statement.executeQuery(sql);
 			
-			while(rs.next()) {
-				// extract each field from rs for each record, map them to a User object and add them to the users arraylist
-				customer u = new customer();
-				u.CustomerId(rs.getInt("id"));
-				u.setUsername(rs.getString("username"));
-				u.setPassword(rs.getString("password"));
-				
+			while(result.next()) {
+				customer cust = new customer();
+				cust.setCustomerId(result.getInt("customer_id"));
+				cust.setUsername(result.getString("customer_username"));
+				cust.setPassword(result.getString("customer_password"));
 				customer.add(cust);
+				
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return users;
+		return customer;
+	}
+
+	
+	public customer pullBycustomer1(String username, String Password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateCustomer(customer C) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCustomer(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public customer pullBycustomer(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
 }

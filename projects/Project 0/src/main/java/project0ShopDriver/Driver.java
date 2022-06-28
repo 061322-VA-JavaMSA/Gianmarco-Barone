@@ -1,13 +1,17 @@
 package project0ShopDriver;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
+import java.util.List;
 import java.util.Scanner;
 
+
+
+import project0ShopDaos.CustomerPostgres;
+import project0ShopExceptions.LoginException;
+import project0ShopModels.customer;
+import project0ShopServices.AuthorizeService;
 import project0ShopUtil.connectionUtil;
 
 
@@ -16,39 +20,35 @@ public class Driver {
 	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args)   {
 		
-		
-		try {Connection c = connectionUtil.connectionHardCoded();
+		  CustomerPostgres test = new CustomerPostgres(); List<customer> name =
+		  test.pullCustomers(); System.out.println(name);
+		 
+		/*try {Connection c = connectionUtil.connectionHardCoded();
 			//put what it is you want to retrieve
 			System.out.println(c.getMetaData().getDriverName());
 			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		  try {Connection c = connectionUtil.connectionHardCoded();
-	
-	            Statement statement = c.createStatement();
-	            String sql = "SELECT * from customer_account;";
-	 	            ResultSet result = statement.executeQuery(sql);
-	 	            // Condition check using hasNext() method which
-	            // holds true till there is single element
-	            // remaining in List
-	            while (result.next()) {
-	 
-	                System.out.println(
-	                    "Username: " + result.getString("customer_username"));
-	                System.out.println(
-	                    "Password:" + result.getString("customer_password"));
-	            }
-	        }
-	 
-	        catch (SQLException e) {
-	 	            System.out.println(e);
-	        }
+		}*/
+		/*
+		 * try {Connection c = connectionUtil.connectionHardCoded();
+		 * 
+		 * Statement statement = c.createStatement(); String sql =
+		 * "SELECT * from customer_account;"; ResultSet result =
+		 * statement.executeQuery(sql);
+		 * 
+		 * while (result.next()) {
+		 * 
+		 * System.out.println( "Username: " + result.getString("customer_username"));
+		 * System.out.println( "Password:" + result.getString("customer_password")); } }
+		 * 
+		 * catch (SQLException e) { System.out.println(e); }
+		 */
 	    
 			
 			switch (mainMenu()) {
 			case "1":
-				System.out.println("Welcome valued customer!");
+				System.out.println("Welcome valued customer");
 				System.out.println("Do you have an account with us?");
 				System.out.println("1. Yes");
 				System.out.println("2. No");
@@ -62,8 +62,11 @@ public class Driver {
 					String custUsername = sc.nextLine();
 					System.out.println("Password: ");
 					String custPassword = sc.nextLine();
-					//c
-					do {
+					
+				
+					break;
+					
+					/*do {
 						if (custUsername == "username" && custPassword == "password") {
 							boolean x;
 							x = false;
@@ -73,7 +76,7 @@ public class Driver {
 						}else
 							System.out.println("Please enter valid credentials");
 							
-					} while (true); 
+					} while (true); */
 					
 					
 					
@@ -164,7 +167,7 @@ public class Driver {
 		
 	}
 	static String mainMenu() {
-		System.out.println("Welcome to the (place holder name)!");
+		System.out.println("Welcome to the the shop!");
 		System.out.println("Are you a Customer or an Employee?");
 		System.out.println("1.Customer");
 		System.out.println("2.Employee");
