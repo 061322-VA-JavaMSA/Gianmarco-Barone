@@ -61,14 +61,6 @@ public class Driver {
 			scan.nextLine();
 			as.login(newUsername, newPassword);
 			u.setUsername(newUsername);
-			switch (newUsername) {
-			case "employee":
-				employeeMenu();
-				break;
-			default:
-				customerMenu();
-				break;
-			}			
 			break;
 		//logs a existing user in
 		case "2":
@@ -82,25 +74,33 @@ public class Driver {
 			case "employee":
 				switch (employeeMenu()) {
 				case "1":
-					addProduct();
-					
+					System.out.println("Enter new product name:");
+					String newProductName = scan.nextLine();
+					System.out.println("Enter product description");
+					String newProductDescription = scan.nextLine();
+					Product createNewProduct = new Product();
+					createNewProduct.setProduct_name(newProductName);
+					createNewProduct.setProduct_description(newProductDescription);
+					System.out.println(ps.createProduct(createNewProduct));
 					break;
 				case "2":
-					System.out.println(removeProduct());
-					
+					printProducts();
+					System.out.println("Which product would you like to remove");
+					int removeItem = scan.nextInt();
+					pd.deleteProductById(removeItem);
+					System.out.println("Product" + removeItem +"removed");
 					break;
 				case "3":
-					System.out.println(pendingOffers());
-					/*
-					 * System.out.println(od.retrievePendingOffers());
-					 * System.out.println("Is the the offer going to be accepted or rejected?");
-					 * String rejectAccept = scan.nextLine();
-					 * System.out.println("Select the offer id you would like to decision"); int
-					 * pendingOfferId = scan.nextInt(); Offer offerdescision = new Offer();
-					 * offerdescision.setOfferStatus(rejectAccept);
-					 * offerdescision.setOfferId(pendingOfferId); od.desicionOffer(offerdescision);
-					 * scan.nextLine();
-					 */
+					System.out.println(od.retrievePendingOffers());
+					System.out.println("Is the the offer going to be accepted or rejected?");
+					String rejectAccept = scan.nextLine();
+					System.out.println("Select the offer id you would like to decision");
+					int pendingOfferId = scan.nextInt();
+					Offer offerdescision = new Offer();
+					offerdescision.setOfferStatus(rejectAccept);
+					offerdescision.setOfferId(pendingOfferId);
+					od.desicionOffer(offerdescision);
+					scan.nextLine();
 					break;
 				case "4":
 					//retrieve all payments greater than 0
@@ -193,40 +193,6 @@ public class Driver {
 		return employeeMenu;
 		
 	}
-	public static Product addProduct() {
-		System.out.println("Enter new product name:");
-		String newProductName = scan.nextLine();
-		System.out.println("Enter product description");
-		String newProductDescription = scan.nextLine();
-		Product createNewProduct = new Product();
-		createNewProduct.setProduct_name(newProductName);
-		createNewProduct.setProduct_description(newProductDescription);
-		System.out.println(ps.createProduct(createNewProduct));
-		
-		return createNewProduct;
-	}
-	public static String removeProduct() {
-		printProducts();
-		System.out.println("Which product would you like to remove");
-		int removeItem = scan.nextInt();
-		pd.deleteProductById(removeItem);
-		String itemRemoved = "Product " + removeItem +" has been removed";
-		
-		return itemRemoved;
-	}
-	public static String pendingOffers() {
-		System.out.println(od.retrievePendingOffers());
-		System.out.println("Is the the offer going to be accepted or rejected?");
-		String rejectAccept = scan.nextLine();
-		System.out.println("Select the offer id you would like to decision");
-		int pendingOfferId = scan.nextInt();
-		Offer offerdescision = new Offer();
-		offerdescision.setOfferStatus(rejectAccept);
-		offerdescision.setOfferId(pendingOfferId);
-		od.desicionOffer(offerdescision);
-		String offerFeedback = "Offer " + pendingOfferId + " has been " + rejectAccept;
-		return offerFeedback;
-		
-	}
+	
 }
 
