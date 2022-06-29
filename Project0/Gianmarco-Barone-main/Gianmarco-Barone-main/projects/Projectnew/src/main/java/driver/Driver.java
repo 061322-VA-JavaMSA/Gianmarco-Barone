@@ -44,7 +44,9 @@ public class Driver {
 		us = new UserService();
 		ps = new ProductService();
 		u = new User();
-		printProducts();
+		
+		while (true) {
+			
 		
 		switch (menu1()) {
 		//creates a user
@@ -91,16 +93,7 @@ public class Driver {
 					break;
 				case "3":
 					System.out.println(pendingOffers());
-					/*
-					 * System.out.println(od.retrievePendingOffers());
-					 * System.out.println("Is the the offer going to be accepted or rejected?");
-					 * String rejectAccept = scan.nextLine();
-					 * System.out.println("Select the offer id you would like to decision"); int
-					 * pendingOfferId = scan.nextInt(); Offer offerdescision = new Offer();
-					 * offerdescision.setOfferStatus(rejectAccept);
-					 * offerdescision.setOfferId(pendingOfferId); od.desicionOffer(offerdescision);
-					 * scan.nextLine();
-					 */
+					
 					break;
 				case "4":
 					//retrieve all payments greater than 0
@@ -110,8 +103,30 @@ public class Driver {
 					break;
 				}
 				
-			
+			break;
 			default:
+				switch (customerMenu()) {
+				case "1":
+					printProducts();
+					System.out.println("Which product would you like to make an offer on?");
+					int itemInterest = scan.nextInt();
+					pd.retrieveProductById(itemInterest);
+					System.out.println("Enter Offer:");
+					int itemOffer = scan.nextInt();
+					Offer newOffer = new Offer();
+					newOffer.setProductId(itemInterest);
+					newOffer.setOfferAmount(itemOffer);
+					newOffer.setUsername(u.getUsername());
+					od.createOffer(newOffer);
+					System.out.println(newOffer + " has been placed");
+					break;
+				case "2":
+					System.out.println(uid.getUserInventoryByUsername(u.getUsername()));
+					
+
+				default:
+					break;
+				}
 			break;
 			}			
 			
@@ -123,35 +138,17 @@ public class Driver {
 		//work on looping until valid choice
 		default:
 			System.out.println("Invalid choice, please try again");
-			menu1();
 			break;
 		}
-		switch (customerMenu()) {
-		case "1":
-			printProducts();
-			System.out.println("Which product would you like to make an offer on?");
-			int itemInterest = scan.nextInt();
-			pd.retrieveProductById(itemInterest);
-			System.out.println("Enter Offer:");
-			int itemOffer = scan.nextInt();
-			Offer newOffer = new Offer();
-			newOffer.setProductId(itemInterest);
-			newOffer.setOfferAmount(itemOffer);
-			newOffer.setUsername(u.getUsername());
-			od.createOffer(newOffer);
-			System.out.println(newOffer + " has been placed");
-			break;
-		case "2":
-			System.out.println(uid.getUserInventoryByUsername(u.getUsername()));
-			
-
-		default:
-			break;
-		}
+	
 		
 		}
+	}
+
 		
 	
+	
+	//reorganize methods
 	
 	public static String menu1() {
 		
@@ -173,8 +170,8 @@ public class Driver {
 		
 	}
 	public static String customerMenu() {
-		System.out.println("what would you like to do?");
-		System.out.println("1. View Show floor");
+		System.out.println("What would you like to do?");
+		System.out.println("1. View show room floor");
 		System.out.println("2. View Owned items");
 		System.out.println("3. Exit");
 		String customerMenu = scan.nextLine();
@@ -226,6 +223,48 @@ public class Driver {
 		od.desicionOffer(offerdescision);
 		String offerFeedback = "Offer " + pendingOfferId + " has been " + rejectAccept;
 		return offerFeedback;
+		
+	}
+	public static String makeAccount() {
+		System.out.println("Create, username: ");
+		String newUsername = scan.nextLine();
+		System.out.println("Create, password");
+		String newPassword = scan.nextLine();
+		User createNewUser = new User();
+		createNewUser.setUsername(newUsername);
+		createNewUser.setPassword(newPassword);
+		System.out.println(us.createUser(createNewUser));
+		as.login(newUsername, newPassword);
+		System.out.println("Your account has been created");
+		scan.nextLine();
+		u.setUsername(newUsername);
+		return newUsername;
+		
+	}
+	public static String makeOffer() {
+		printProducts();
+		System.out.println("Which product would you like to make an offer on?");
+		int itemInterest = scan.nextInt();
+		pd.retrieveProductById(itemInterest);
+		System.out.println("Enter Offer:");
+		int itemOffer = scan.nextInt();
+		Offer newOffer = new Offer();
+		newOffer.setProductId(itemInterest);
+		newOffer.setOfferAmount(itemOffer);
+		newOffer.setUsername(u.getUsername());
+		od.createOffer(newOffer);
+		String newOfferMessage = newOffer + " has been placed";
+		return newOfferMessage;
+		
+	}
+	public static String login() {
+		System.out.println("Enter your username: ");
+		String username = scan.nextLine();
+		System.out.println("Enter your password: ");
+		String password = scan.nextLine();
+		as.login(username, password);
+		u.setUsername(username);
+		return username;
 		
 	}
 }

@@ -26,7 +26,7 @@ public class UserInventoryPostgres implements UserInventoryDAO {
 		try (Connection c = ConnectionUtil.getLocalConnection();){
 			PreparedStatement ps = c.prepareStatement(sql);
 			
-			ps.setString(1, username); // this refers to the 1st "?" in the sql string, allows to inject data
+			ps.setString(1, username); 
 
 			ResultSet rs = ps.executeQuery();
 			

@@ -9,8 +9,9 @@ auth boolean default false
 
 insert into Users (username, password, auth) values ('employee', 'employee1', true)
 insert into Users (username, password, auth) values ('username', 'password', default)
+delete from Users where auth = false;
 
-drop table if exists Product	
+drop table if exists Product cascade	
 create table if not exists Product(
 Product_id serial primary key,
 Product_name varchar(25),
@@ -27,15 +28,15 @@ insert into Product(Product_name, Product_description) values(' Rolls-Royce Phan
 drop table if exists Offers
 create table if not exists Offers(
 Offer_id serial primary key,
-Offer_amount int not null,
+Offer_amount numeric,
 Product_id int references Product(Product_id),
 Offer_username varchar(30),
 Offer_status varchar(30) default 'pending'
 );
 
-insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (9000, 1, 'username', 'pending'  );
-insert into Offers (offer_amount,product_id,offer_username,offer_status) values(4000, 1, 'stanley', 'rejected');
-insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (9000, 1, 'username', 'pending'  );
+insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (5000, 1, 'username', 'pending'  );
+insert into Offers (offer_amount,product_id,offer_username,offer_status) values(4000, 2, 'username', 'rejected');
+insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (8000, 3, 'username', 'pending'  );
 insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (9000, 1, 'username', 'pending'  );
 update Offers set offer_status = 'rejected' where offer_id = 1;
 
@@ -48,6 +49,7 @@ User_id varchar(30) references Users(username)
 );
 
 insert into user_inventory(item_name, user_id, remaining_payments) values('Toyota Corolla', 'username', 6) 
+insert into user_inventory(item_name, user_id, remaining_payments) values('Bentley', 'username', 8)
  
 drop table if exists User_offer_list
 create table if not exists User_offer_list(

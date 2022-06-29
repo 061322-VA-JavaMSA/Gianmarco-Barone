@@ -24,10 +24,10 @@ private UserDAO ud = new UserPostgres();
 			if(u == null || !u.getPassword().equals(password)) {
 			System.out.println("Incorrect Credentials");
 			System.out.println("Please try again");
-			throw new LoginException();
+			//throw new LoginException();
 			
 			}else {
-				System.out.println("You are logged in");
+				
 				
 			}
 			return u;

@@ -50,6 +50,8 @@ public class OfferPostgres implements OfferDAO {
 				o.setOfferId(rs.getInt("Offer_id"));
 				o.setUsername(rs.getString("Offer_username"));
 				o.setOfferStatus(rs.getString("Offer_status"));
+				o.setOfferAmount(rs.getInt("Offer_amount"));
+				o.setProductId(rs.getInt("Product_id"));
 				
 				
 				offers.add(o);
