@@ -1,0 +1,13 @@
+16:51:46 [main] ERROR driver.Driver - TEST
+16:51:57 [main] ERROR services.AuthService - Login exception was thrownexceptions.LoginException
+17:01:22 [main] ERROR driver.Driver - TEST
+17:01:35 [main] INFO  services.UserService - User: User id:3, username:jon, password:smith was created.
+17:02:52 [main] ERROR driver.Driver - TEST
+17:02:59 [main] INFO  services.UserService - User: User id:4, username:stan, password:man was created.
+17:04:05 [main] ERROR driver.Driver - TEST
+17:04:12 [main] INFO  services.UserService - User: User id:5, username:bub, password:bub was created.
+17:04:57 [main] ERROR driver.Driver - TEST
+17:05:05 [main] INFO  driver.Driver - Create, username: 
+17:05:43 [main] ERROR driver.Driver - TEST
+17:05:56 [main] INFO  driver.Driver - Create, username: 
+17:06:44 [main] ERROR driver.Driver - TEST
