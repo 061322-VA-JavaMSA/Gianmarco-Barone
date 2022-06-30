@@ -35,7 +35,7 @@ Offer_status varchar(30) default 'pending'
 );
 
 insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (5000, 1 , 'username', 'pending'  );
-insert into Offers (offer_amount,Product_id,offer_username,offer_status) values(4000, 2 , 'username', 'rejected');
+insert into Offers (offer_amount,Product_id,offer_username,offer_status) values(4000, 2 , 'username', 'pending');
 insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (8000, 3, 'username', 'pending'  );
 insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (9000, 1, 'username', 'pending'  );
 delete from Offers where offer_amount > 1;

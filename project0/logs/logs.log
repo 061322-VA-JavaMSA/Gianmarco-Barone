@@ -102,3 +102,6 @@
 21:46:00 [main] ERROR services.AuthService - Login exception was thrownexceptions.LoginException
 21:47:45 [main] ERROR services.AuthService - Login exception was thrownexceptions.LoginException
 23:07:25 [main] INFO  services.UserService - User: User id:3, username:jon, password:smith was created.
+08:36:06 [main] INFO  services.UserService - User: User id:0, username:jon, password:smith was created.
+08:37:31 [main] INFO  services.UserService - User: User id:5, username:stan, password:man was created.
+08:42:07 [main] INFO  driver.Driver - OfferAmount: 90000 OfferStatus: null Username: username OfferId: 6 ProductId: 3

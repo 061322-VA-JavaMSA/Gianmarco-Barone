@@ -82,6 +82,7 @@ public class TESTDRIVER {
 				break;
 			case "2":
 				System.out.println(removeProduct());
+				scan.nextLine();
 				break;
 			case "3":
 				System.out.println(pendingOffers());
@@ -103,6 +104,7 @@ public class TESTDRIVER {
 			switch (customerMenu()) {
 			case "1":
 				makeOffer();
+				scan.nextLine();
 				break;
 			case "2":
 				System.out.println(uid.getUserInventoryByUsername(u.getUsername()));
@@ -183,7 +185,7 @@ public class TESTDRIVER {
 		Product createNewProduct = new Product();
 		createNewProduct.setProduct_name(newProductName);
 		createNewProduct.setProduct_description(newProductDescription);
-		System.out.println(ps.createProduct(createNewProduct));
+		log.info(ps.createProduct(createNewProduct));
 		
 		return createNewProduct;
 	}
@@ -191,7 +193,7 @@ public class TESTDRIVER {
 		printProducts();
 		System.out.println("Which product would you like to remove");
 		int removeItem = scan.nextInt();
-		pd.deleteProductById(removeItem);
+		log.info(pd.deleteProductById(removeItem));
 		String itemRemoved = "Product " + removeItem +" has been removed";
 		
 		return itemRemoved;
@@ -237,7 +239,7 @@ public class TESTDRIVER {
 		newOffer.setProductId(itemInterest);
 		newOffer.setOfferAmount(itemOffer);
 		newOffer.setUsername(u.getUsername());
-		od.createOffer(newOffer);
+		log.info(od.createOffer(newOffer));
 		String newOfferMessage = newOffer + " has been placed";
 		return newOfferMessage;
 		
