@@ -90,6 +90,7 @@ public class TESTDRIVER {
 				break;
 			case "4":
 				System.out.println(uid.remainingPaymentsList());
+				scan.nextLine();
 				break;
 			case "5":
 				x = false;
@@ -101,6 +102,7 @@ public class TESTDRIVER {
 			}
 			
 		}else if(ud.retrieveUserByUsername(loginEntry) != null) {
+			while (x) {
 			switch (customerMenu()) {
 			case "1":
 				makeOffer();
@@ -108,12 +110,17 @@ public class TESTDRIVER {
 				break;
 			case "2":
 				System.out.println(uid.getUserInventoryByUsername(u.getUsername()));
-				
-
+				scan.nextLine();
+				break;
+			case "3":
+				x = false;
+				break;
 			default:
+				System.out.println("Invalid choice, please try again");
 				break;
 			}
 			}
+		}
 		
 		x = true;
 		break;
