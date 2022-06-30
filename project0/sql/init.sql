@@ -14,7 +14,7 @@ delete from Users where auth = false;
 drop table if exists Product cascade	
 create table if not exists Product(
 Product_id serial primary key,
-Product_name varchar(25),
+Product_name varchar(25) unique,
 Product_description text,
 Product_owner integer default 1 references Users(id)
 );
@@ -34,11 +34,11 @@ Offer_username varchar(30),
 Offer_status varchar(30) default 'pending'
 );
 
-insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (5000, 1, 'username', 'pending'  );
-insert into Offers (offer_amount,product_id,offer_username,offer_status) values(4000, 2, 'username', 'rejected');
+insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (5000, 1 , 'username', 'pending'  );
+insert into Offers (offer_amount,Product_id,offer_username,offer_status) values(4000, 2 , 'username', 'rejected');
 insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (8000, 3, 'username', 'pending'  );
 insert into Offers (Offer_amount, Product_id,offer_username,offer_status) values (9000, 1, 'username', 'pending'  );
-update Offers set offer_status = 'rejected' where offer_id = 1;
+delete from Offers where offer_amount > 1;
 
 drop table if exists User_inventory
 create table if not exists User_inventory(

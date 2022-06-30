@@ -25,7 +25,7 @@ import services.ProductService;
 import services.UserService;
 
 
-public class Driver {
+public class TESTDRIVER {
 	static Scanner scan;
 	static AuthService as;
 	static UserService us;
@@ -44,106 +44,91 @@ public class Driver {
 		us = new UserService();
 		ps = new ProductService();
 		u = new User();
-		log.error("TEST");
-		while (true) {
-			
+	
 		
-		switch (menu1()) {
-		//creates a user
+		 boolean x = true;	
+		while (x) {
+			switch (menu1()) {
 		case "1":
-			log.info("Create, username: ");
-			String newUsername = scan.nextLine();
-			System.out.println("Create, password");
-			String newPassword = scan.nextLine();
-			User createNewUser = new User();
-			createNewUser.setUsername(newUsername);
-			createNewUser.setPassword(newPassword);
-			log.info(us.createUser(createNewUser));
-			System.out.println("Your account has been created");
-			scan.nextLine();
-			as.login(newUsername, newPassword);
-			u.setUsername(newUsername);
-			switch (newUsername) {
-			case "employee":
-				employeeMenu();
-				break;
-			default:
-				customerMenu();
-				break;
-			}			
-			break;
-		//logs a existing user in
-		case "2":
-			log.info("Enter your username: ");
-			String username = scan.nextLine();
-			System.out.println("Enter your password: ");
-			String password = scan.nextLine();
-			as.login(username, password);
-			u.setUsername(username);
-			switch (username) {
-			case "employee":
-				switch (employeeMenu()) {
-				case "1":
-					addProduct();
-					
-					break;
-				case "2":
-					System.out.println(removeProduct());
-					
-					break;
-				case "3":
-					System.out.println(pendingOffers());
-					
-					break;
-				case "4":
-					//retrieve all payments greater than 0
-					//employee can view all payments
-					System.out.println(uid.remainingPaymentsList());
-				default:
-					break;
-				}
-				
-			break;
-			default:
+			makeAccount();
+			while (x) {
 				switch (customerMenu()) {
 				case "1":
-					printProducts();
-					System.out.println("Which product would you like to make an offer on?");
-					int itemInterest = scan.nextInt();
-					pd.retrieveProductById(itemInterest);
-					System.out.println("Enter Offer:");
-					int itemOffer = scan.nextInt();
-					Offer newOffer = new Offer();
-					newOffer.setProductId(itemInterest);
-					newOffer.setOfferAmount(itemOffer);
-					newOffer.setUsername(u.getUsername());
-					od.createOffer(newOffer);
-					System.out.println(newOffer + " has been placed");
+					makeOffer();
+					scan.nextLine();
 					break;
 				case "2":
 					System.out.println(uid.getUserInventoryByUsername(u.getUsername()));
-					
-
-				default:
+					scan.nextLine();
 					break;
+				case "3":
+					x = false;
+					break;
+				default:
+					System.out.println("Invalid choice, please try again");
+					break;
+					}
 				}
+			x = true;
 			break;
-			}			
+		
+		case "2":
+		String loginEntry = login();
+			if (loginEntry.equals("employee")) {	
+			while (x) {
+			switch (employeeMenu()) {
+			case "1":
+				addProduct();
+				break;
+			case "2":
+				System.out.println(removeProduct());
+				break;
+			case "3":
+				System.out.println(pendingOffers());
+				scan.nextLine();
+				break;
+			case "4":
+				System.out.println(uid.remainingPaymentsList());
+				break;
+			case "5":
+				x = false;
+				break;
+			default:
+				System.out.println("Invalid choice, please try again");
+				break;
+			}
+			}
 			
-		//exits program
+		}else if(ud.retrieveUserByUsername(loginEntry) != null) {
+			switch (customerMenu()) {
+			case "1":
+				makeOffer();
+				break;
+			case "2":
+				System.out.println(uid.getUserInventoryByUsername(u.getUsername()));
+				
+
+			default:
+				break;
+			}
+			}
+		
+		x = true;
+		break;
 		case "3":
 			System.out.println("Goodbye");
 			System.exit(0);
 			break;
-		//work on looping until valid choice
 		default:
 			System.out.println("Invalid choice, please try again");
 			break;
-		}
 	
-		
+		}
 		}
 	}
+
+		
+
 
 		
 	
@@ -173,7 +158,7 @@ public class Driver {
 		System.out.println("What would you like to do?");
 		System.out.println("1. View show room floor");
 		System.out.println("2. View Owned items");
-		System.out.println("3. Exit");
+		System.out.println("3. Back to Main Menu");
 		String customerMenu = scan.nextLine();
 		return customerMenu;
 		
@@ -185,7 +170,7 @@ public class Driver {
 		System.out.println("2. Remove a product");
 		System.out.println("3. View pending offers");
 		System.out.println("4. View customer payments ");
-		System.out.println("5. Exit");
+		System.out.println("5. Back to Main Menu");
 		String employeeMenu = scan.nextLine();
 		return employeeMenu;
 		
@@ -221,7 +206,7 @@ public class Driver {
 		offerdescision.setOfferStatus(rejectAccept);
 		offerdescision.setOfferId(pendingOfferId);
 		od.desicionOffer(offerdescision);
-		String offerFeedback = "Offer " + pendingOfferId + " has been " + rejectAccept;
+		String offerFeedback = "Offer " + pendingOfferId + " has been desicioned as " + rejectAccept;
 		return offerFeedback;
 		
 	}
@@ -233,10 +218,10 @@ public class Driver {
 		User createNewUser = new User();
 		createNewUser.setUsername(newUsername);
 		createNewUser.setPassword(newPassword);
-		System.out.println(us.createUser(createNewUser));
-		as.login(newUsername, newPassword);
+		us.createUser(createNewUser);
 		System.out.println("Your account has been created");
 		scan.nextLine();
+		as.login(newUsername, newPassword);
 		u.setUsername(newUsername);
 		return newUsername;
 		
@@ -264,8 +249,10 @@ public class Driver {
 		String password = scan.nextLine();
 		as.login(username, password);
 		u.setUsername(username);
+		
 		return username;
 		
 	}
+	
 }
 

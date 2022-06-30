@@ -115,7 +115,7 @@ public class ProductPostgres implements ProductDAO {
 			
 			while(rs.next()) {
 				Product t = new Product();
-				t.setProduct_id(rs.getInt("id"));
+				t.setProduct_id(rs.getInt("Product_id"));
 				t.setProduct_name(rs.getString("Product_name"));
 				t.setProduct_description(rs.getString("description"));
 				t.setProduct_price(rs.getInt("Product_price")); // rs.getDate returns a date that we have to convert to a local date

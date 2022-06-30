@@ -22,7 +22,8 @@ private UserDAO ud = new UserPostgres();
 
 	public User login(String username, String password) throws LoginException {
 			if(username == null || password == null) {
-			throw new LoginException();
+				LoginException e = new LoginException();
+				log.error("Login exception was thrown" + e.fillInStackTrace());
 		}
 		
 		User u = ud.retrieveUserByUsername(username);
@@ -31,9 +32,9 @@ private UserDAO ud = new UserPostgres();
 			System.out.println("Please try again");
 			LoginException e = new LoginException();
 			log.error("Login exception was thrown" + e.fillInStackTrace());
-			
+			u = null;
 			}else {
-				
+			
 				
 			}
 			return u;

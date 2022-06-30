@@ -8,12 +8,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import driver.Driver;
 import models.Offer;
 import models.User;
 import util.ConnectionUtil;
 
 public class OfferPostgres implements OfferDAO {
-
+	private static Logger log = LogManager.getLogger(OfferPostgres.class);
 	@Override
 	public Offer createOffer(Offer o) {
 		String sql = "insert into Offers (Offer_amount, Product_id,Offer_username) values (?,?,?) returning Offer_id;";
@@ -30,7 +34,7 @@ public class OfferPostgres implements OfferDAO {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info("SQLException thrown" + e.fillInStackTrace());
 		}
 		return o;
 	}
@@ -49,7 +53,6 @@ public class OfferPostgres implements OfferDAO {
 				Offer o = new Offer();
 				o.setOfferId(rs.getInt("Offer_id"));
 				o.setUsername(rs.getString("Offer_username"));
-				o.setOfferStatus(rs.getString("Offer_status"));
 				o.setOfferAmount(rs.getInt("Offer_amount"));
 				o.setProductId(rs.getInt("Product_id"));
 				
