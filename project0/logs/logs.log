@@ -105,3 +105,11 @@
 08:36:06 [main] INFO  services.UserService - User: User id:0, username:jon, password:smith was created.
 08:37:31 [main] INFO  services.UserService - User: User id:5, username:stan, password:man was created.
 08:42:07 [main] INFO  driver.Driver - OfferAmount: 90000 OfferStatus: null Username: username OfferId: 6 ProductId: 3
+10:18:25 [main] INFO  services.UserService - User: User id:3, username:jon, password:smith was created.
+10:19:04 [main] INFO  driver.Driver - OfferAmount: 90000 OfferStatus: null Username: jon OfferId: 3 ProductId: 3
+10:19:24 [main] ERROR services.AuthService - Login exception was thrownexceptions.LoginException
+10:20:47 [main] INFO  driver.Driver - Product [Product_id=0, Product_name=new car, Product_description=placeholder, Product_price=0, Product_owner=null]
+10:21:03 [main] INFO  driver.Driver - true
+10:21:47 [main] INFO  driver.Driver - OfferAmount: 100000 OfferStatus: null Username: username OfferId: 4 ProductId: 1
+10:22:45 [main] ERROR services.AuthService - Login exception was thrownexceptions.LoginException
+10:23:39 [main] ERROR services.AuthService - Login exception was thrownexceptions.LoginException
