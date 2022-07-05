@@ -1,5 +1,7 @@
 package codingChallengePractice;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Driver {
@@ -8,14 +10,31 @@ static Scanner scan;
 		scan = new Scanner(System.in);
 		
 		
-		
 	
-		
-		
+	
 	
 		 
 		
 				
+	}
+
+	
+	static void staircase(int n) {
+		for(int numSymbols = 1; numSymbols <= n; numSymbols++ ) {
+			int numSpaces = n - numSymbols;
+			for(int i = 0; i < numSpaces; i++) {
+				System.out.print(" ");
+				
+			}
+			for(int i = 0; i < numSymbols; i++) {
+				
+				System.out.print("#");
+			}
+			System.out.println();
+		}	
+		
+		
+		
 	}
 	static int libraryFine(int d1, int m1, int y1, int d2, int m2, int y2) {
 		
