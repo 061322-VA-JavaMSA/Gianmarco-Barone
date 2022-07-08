@@ -15,7 +15,7 @@ private UserDao ud = new UserHibernate();
 	
 	public User createUser(User u) throws UserNotCreatedException {
 		// by default, created account will be basic Users
-		u.setRole(Role.EMPLOYEE);
+		u.setRole(Role.employee);
 		
 		User createdUser = ud.insertUser(u);
 		if(createdUser.getId() == -1) {

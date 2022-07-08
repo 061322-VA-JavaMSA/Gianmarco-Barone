@@ -2,11 +2,26 @@ package models;
 
 import java.util.Objects;
 
-public class User {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "users")
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private int id;
+	@Column(name="username", unique = true)
 	private String username;
+	@Column(name="password")
 	private String password;
+	@Enumerated(EnumType.STRING)
 	private Role role;
 	
 	public User() {

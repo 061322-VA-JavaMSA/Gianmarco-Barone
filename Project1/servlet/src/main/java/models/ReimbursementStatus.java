@@ -2,8 +2,17 @@ package models;
 
 import java.util.Objects;
 
-public class ReimbursementStatus {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name ="reimbursementStatus")
+public class ReimbursementStatus {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private Status status;
 	

@@ -2,20 +2,58 @@ package codingChallengePractice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Driver {
 static Scanner scan;
 	public static void main(String[] args) {
 		scan = new Scanner(System.in);
-		
-		
+		int n = 30;
+		int p = 5;
+		int q = 4;
+		while (n > 0) {
+			if (n>= p) {
+				System.out.println(n - p);
+				System.out.println(n-q);
+			}else
+				System.out.println("i dont know");
+			
+		}
 	
 	
 	
 		 
 		
 				
+	}
+	
+	static String reversed(String s) {
+		
+		char[] letters = new char[s.length()];
+		
+		int lettersIndex = 0;
+		for(int i = s.length() -1; i >= 0; i--) {
+			letters[lettersIndex] = s.charAt(i);
+			lettersIndex++;
+		}
+		//WIP
+		
+		return s;
+		
+		
+	}
+	static int reversed(int input) {
+		int reversed = 0;
+		
+		while(input != 0) {
+			reversed = reversed * 10 + input % 10;
+			input/= 10;
+			
+		}
+		
+		
+		return reversed;
 	}
 
 	
