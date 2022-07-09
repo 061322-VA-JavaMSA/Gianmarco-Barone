@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
+import models.Role;
 import models.User;
 import util.HibernateUtil;
 
@@ -76,6 +77,17 @@ public class UserHibernate implements UserDao {
 		}
 		
 		return users;
+	}
+
+	@Override
+	public User getUserbyRole(Role role) {
+	User user = null;
+		
+		try(Session s = HibernateUtil.getSessionFactory().openSession();){
+			user = s.get(User.class, role);
+		}
+		
+		return user;
 	}
 
 }

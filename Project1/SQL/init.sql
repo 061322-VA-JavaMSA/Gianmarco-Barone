@@ -1,7 +1,7 @@
 
 
 
-drop table if exists reimbursement_status
+drop table if exists reimbursement_status cascade
 create table if not exists reimbursement_status(
 status_id serial primary key,
 status varchar(30) default 'pending'
@@ -13,7 +13,7 @@ insert into reimbursement_status (status) values('pending');
 
 
 
-drop table if exists reimbursement_type
+drop table if exists reimbursement_type cascade
 create table if not exists reimbursement_type(
 type_id serial primary key,
 type varchar(30) default 'other'
@@ -51,7 +51,7 @@ insert into users (username, password, role) values ('jane', 'password3', 'emplo
 
 
 
-drop table if exists reimbursement
+drop table if exists reimbursement cascade
 create table if not exists reimbursement(
 reimbursement_id serial primary key,
 amount int,
@@ -62,6 +62,6 @@ status_id int references reimbursement_status(status_id),
 type_id int references reimbursement_type(type_id)
 );
 
-insert into reimbursement (amount, description, type_id) values(100, 'description', 1);
-insert into reimbursement (amount, description, author, type_id) values(50,'description', 2);
+insert into reimbursement (amount, description, author, resolver,status_id, type_id) values(100, 'description', 'employee','manager', 1, 1);
+insert into reimbursement (amount, description, author, type_id) values(50,'description','employee', 2);
 insert into reimbursement (amount, description, author) values(300,'description', 'jane');

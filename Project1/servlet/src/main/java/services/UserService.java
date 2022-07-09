@@ -36,5 +36,12 @@ private UserDao ud = new UserHibernate();
 		List<User> users = ud.getUsers();
 		return users;
 	}
+	public User getUserByRole(Role role) throws UserNotFoundException {
+		User u = ud.getUserbyRole(role);
+		if (u == null) {
+			throw new UserNotFoundException();
+		}
+		return u;
 
+}
 }
