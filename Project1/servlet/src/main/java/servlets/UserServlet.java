@@ -49,13 +49,6 @@ public class UserServlet extends HttpServlet {
 		CorsFix.addCorsHeader(req.getRequestURI(), res);
 		res.addHeader("Content-Type", "application/json");
 
-
-		/*-
-		 * Extra path information associated with the URL the client sent when it made this request
-		 * 	- ie: 
-		 * 		- "/1" if /users/1
-		 * 		- null if /users
-		 */
 		String pathInfo = req.getPathInfo();
 
 	
@@ -73,24 +66,7 @@ public class UserServlet extends HttpServlet {
 			pw.write(om.writeValueAsString(usersDTO));
 
 			pw.close();
-			//HttpSession session = req.getSession();
-
-			/*
-			 * if (session.getAttribute("userRole")!= null &&
-			 * session.getAttribute("userRole").equals(Role.manager)) { // retrieving users
-			 * from db using UserService List<User> users = us.getUsers(); List<UserDto>
-			 * usersDTO = new ArrayList<>();
-			 * 
-			 * // converting Users to UserDTOs for data transfer users.forEach(u ->
-			 * usersDTO.add(new UserDto(u)));
-			 * 
-			 * // retrieving print writer to write to the Response body PrintWriter pw =
-			 * res.getWriter(); // writing toString representation of Users to body
-			 * pw.write(om.writeValueAsString(usersDTO));
-			 * 
-			 * pw.close(); }else { // if the user making the request is not an admin
-			 * res.sendError(401, "Unauthorized request."); }
-			 */
+			
 		} else {
 			// /1, /11, /{some-value}
 			// Have to remove "/" to get the id to be retrieved

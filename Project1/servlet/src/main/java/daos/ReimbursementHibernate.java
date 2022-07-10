@@ -6,9 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
-import exceptions.LoginException;
 import models.Reimbursement;
+import models.ReimbursementStatus;
 import models.Status;
+import models.User;
 import util.HibernateUtil;
 
 public class ReimbursementHibernate implements ReimbursementDao {
@@ -29,8 +30,13 @@ public class ReimbursementHibernate implements ReimbursementDao {
 
 	@Override
 	public Reimbursement getReimbursementById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+			Reimbursement reimbursement = null;
+		
+		try(Session s = HibernateUtil.getSessionFactory().openSession();){
+			reimbursement = s.get(Reimbursement.class, id);
+		}
+		
+		return reimbursement;
 	}
 
 	@Override
@@ -47,8 +53,25 @@ public class ReimbursementHibernate implements ReimbursementDao {
 
 	@Override
 	public List<Reimbursement> getReimbursements() {
+			List<Reimbursement> reimbursement = null;
+		
+		try(Session s = HibernateUtil.getSessionFactory().openSession()){
+			reimbursement = s.createQuery("from Reimbursement ", Reimbursement.class).list();
+		}
+		
+		return reimbursement;
+	}
+
+	@Override
+	public List<Reimbursement> getByAuthor(User u) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean setStatusByID(int id, User approverUser, ReimbursementStatus status) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

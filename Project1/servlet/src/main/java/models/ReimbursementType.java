@@ -14,8 +14,9 @@ import jakarta.persistence.Table;
 public class ReimbursementType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="type_id")
 	private int id;
-	@Column(name = "type")
+	@Column(name = "reimbursement_type")
 	private String type;
 	
 	

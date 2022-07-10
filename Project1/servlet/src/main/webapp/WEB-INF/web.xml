@@ -5,6 +5,15 @@
 	version="2.5">
 	<display-name>employee-reimbursement</display-name>
 	<servlet>
+		<servlet-name>reimbursement-servlet</servlet-name>
+		<servlet-class>servlets.ReimbursementServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reimbursement-servlet</servlet-name>
+		<url-pattern>/reimbursement/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>user-servlet</servlet-name>
 		<servlet-class>servlets.UserServlet</servlet-class>
 	</servlet>
@@ -20,13 +29,6 @@
 		<servlet-name>auth-servlet</servlet-name>
 		<url-pattern>/auth</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>reimbursement-servlet</servlet-name>
-		<servlet-class>servlets.ReimbursementServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>reimbursement-servlet</servlet-name>
-		<url-pattern>/reimbursement/*</url-pattern>
-	</servlet-mapping>
+	
 	
 </web-app>

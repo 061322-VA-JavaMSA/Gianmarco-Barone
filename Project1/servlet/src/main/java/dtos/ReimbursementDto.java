@@ -1,45 +1,41 @@
-package models;
+package dtos;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import models.Reimbursement;
+import models.ReimbursementStatus;
+import models.ReimbursementType;
+import models.User;
 
-@Entity
-@Table(name ="reimbursement")
-public class Reimbursement {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ReimbursementDto {
+
 	private int id;
-	@Column
 	private int amount;
-	@Column 
 	private Timestamp  submitted;
-	@Column
  	private Timestamp  resolved;
-	@Column
 	private String description;
-	@ManyToOne
-    @JoinColumn(name = "author_id")
 	private User author;
-	@ManyToOne
-    @JoinColumn(name = "resolver_id")
 	private User resolver;
-	@ManyToOne 
-	@JoinColumn(name = "reimbursement_status_id")	
 	private ReimbursementStatus  reimbursementStatus;
-	@ManyToOne 
-	@JoinColumn(name = "reimbursement_type_id")
 	private ReimbursementType reimbursementType;
+	
+	
+	public ReimbursementDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public ReimbursementDto(Reimbursement r) {
+		id = r.getId();
+		amount = r.getAmount();
+		description = r.getDescription();
+		author = r.getAuthor();
+		resolver = r.getResolver();
+		reimbursementStatus = r.getReimbursementStatus();
+		reimbursementType = r.getReimbursementType();
+	}
 	public int getId() {
 		return id;
 	}
@@ -94,13 +90,10 @@ public class Reimbursement {
 	public void setReimbursementType(ReimbursementType reimbursementType) {
 		this.reimbursementType = reimbursementType;
 	}
-	@Override
-	public String toString() {
-		return "Reimbursement [id=" + id + ", amount=" + amount + ", submitted=" + submitted + ", resolved=" + resolved
-				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver
-				+ ", reimbursementStatus=" + reimbursementStatus + ", reimbursementType=" + reimbursementType + "]";
-	}
 	
+	
+	
+
 	
 	
 }
