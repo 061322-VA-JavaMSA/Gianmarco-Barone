@@ -129,4 +129,9 @@ public class UserServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	@Override
+	protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		CorsFix.addCorsHeader(req.getRequestURI(),res);
+		super.doOptions(req, res);
+	}
 }

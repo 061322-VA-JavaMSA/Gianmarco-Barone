@@ -26,7 +26,7 @@ public class Reimbursement {
 	@ManyToOne
     @JoinColumn(name = "resolverUsername")
 	private User resolverUsername;
-	private ReimbursementStatus status;
+	private Status status;
 	private ReimbursementType type;
 	
 	public Reimbursement() {
@@ -74,12 +74,12 @@ public class Reimbursement {
 		this.resolverUsername = resolverUsername;
 	}
 
-	public ReimbursementStatus getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(ReimbursementStatus status) {
-		this.status = status;
+	public void setStatus(Status pending) {
+		this.status = pending;
 	}
 
 	public ReimbursementType getType() {

@@ -3,7 +3,7 @@
     "-//Hibernate/Hibernate Configuration DTD//EN"
     "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
-<!-- Root Tag for hibernate configuration file -->
+
 <hibernate-configuration>
 
 
@@ -19,7 +19,12 @@
 		<property name="hibernate.hbm2ddl.auto">validate</property>
 		
 		<mapping class ="models.User"></mapping>
-	
+		<mapping class ="models.Role"></mapping>
+		<mapping class ="models.ReimbursementStatus"></mapping>
+		<mapping class ="models.Status"></mapping>
+		
+		
+		
 
 
 	</session-factory>
