@@ -66,7 +66,8 @@ reimbursement_type_id int references reimbursement_type(type_id)
 );
 
 insert into reimbursement (amount, description,author_id ,resolver_id , reimbursement_status_id,reimbursement_type_id) values(100, 'description', 2, 1, 3, 1);
-insert into reimbursement (amount, description,author_id ,resolver_id , reimbursement_status_id,reimbursement_type_id) values(500, 'description', 3, 1, 3, 1);
+insert into reimbursement (amount, description,author_id ,resolver_id , reimbursement_status_id,reimbursement_type_id) values(500, 'description', 3, 1, 1, 1);
+insert into reimbursement(amount, description, author_id, resolver_id, reimbursement_status_id, reimbursement_type_id) values (789, 'ummmmm', 3, 1, 2, 2);
 
 
 

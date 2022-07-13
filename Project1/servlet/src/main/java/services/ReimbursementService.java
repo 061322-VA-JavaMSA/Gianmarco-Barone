@@ -11,6 +11,9 @@ import daos.UserHibernate;
 import exceptions.ReimbursementNotCreatedException;
 import exceptions.UserNotFoundException;
 import models.Reimbursement;
+import models.ReimbursementStatus;
+import models.User;
+import servlets.ReimbursementNotFoundException;
 
 public class ReimbursementService {
 	
@@ -38,5 +41,14 @@ public class ReimbursementService {
 			
 		return r;
 	}
+	public ReimbursementStatus getReimbursementStatusById(int id) {
+		ReimbursementStatus status = rsd.getReimbursementStatusById(id);
+		return status;
+	}
 
+	public boolean setStatusByID(int id, int user_id, String status_txt) throws ReimbursementNotFoundException {
+		ReimbursementStatus rs = rsd.get(status_txt);
+		User user = ud.getUserById(user_id);
+		return rd.setStatusByID(id, user, rs);
+	}
 }

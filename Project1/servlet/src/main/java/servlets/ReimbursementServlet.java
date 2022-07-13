@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dtos.CreateReimbursementDto;
 import dtos.ReimbursementDto;
 import dtos.UserDto;
+import dtos.reimbursementStatusUpdateDto;
 import exceptions.ReimbursementNotCreatedException;
 import exceptions.UserNotCreatedException;
 import exceptions.UserNotFoundException;
@@ -97,9 +100,9 @@ public class ReimbursementServlet extends HttpServlet {
 		try {
 			createReimbursement.setAmount(crd.getAmount());
 			createReimbursement.setDescription(crd.getDescription());
-			createReimbursement.setAuthor(us.getUserById(crd.getAuthorId()));
-			createReimbursement.setReimbursementStatus(rss.getReimbursementStatusById(1));
-			createReimbursement.setReimbursementType(rts.getReimbursementTypeById(crd.getReimbursementTypeId()));
+			createReimbursement.setAuthor(us.getUserById(crd.getAuthor_id()));
+			createReimbursement.setReimbursementStatus(rss.getReimbursementStatusById(3));
+			createReimbursement.setReimbursementType(rts.getReimbursementTypeById(crd.getReimbursement_type_id()));
 			createReimbursement.setSubmitted(timestamp);
 			Reimbursement newReimbursement = rs.createReimbursement(createReimbursement);
 			try(PrintWriter pw = res.getWriter()){
@@ -112,6 +115,34 @@ public class ReimbursementServlet extends HttpServlet {
 		}
 
 	}
+	protected void doPut(HttpServletRequest req, HttpServletResponse res) throws StreamReadException, DatabindException, IOException {
+		CorsFix.addCorsHeader(req.getRequestURI(), res);
+		res.addHeader("Content-Type", "application/json");
+		InputStream reqBody = req.getInputStream();
+		String pathInfo = req.getPathInfo();
+		
+		CreateReimbursementDto crd = om.readValue(reqBody, CreateReimbursementDto.class);
+		int id = Integer.parseInt(pathInfo.substring(1));
+		crd.setId(id);
+	
+	
+		try {
+			ReimbursementDto rd = new ReimbursementDto(rs.getReimbursementById(id));
+			rs.getReimbursementStatusById(id);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+ 						
+ 		
+			}
+
+		
+		
+		
+
 
 		
 	

@@ -1,11 +1,15 @@
 package daos;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaUpdate;
+import jakarta.persistence.criteria.Root;
 import models.Reimbursement;
 import models.ReimbursementStatus;
 import models.Status;
@@ -69,9 +73,13 @@ public class ReimbursementHibernate implements ReimbursementDao {
 	}
 
 	@Override
-	public boolean setStatusByID(int id, User approverUser, ReimbursementStatus status) {
+	public boolean setStatusByID(int id, User resolver, ReimbursementStatus status) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-}
+	
+	
+	}
+
+
