@@ -1,9 +1,6 @@
-// if no users are logged in/ user logged in is not admin, redirects to homepage 
-if(!principal || principal.role !== 'manager'){
-    window.location.href="./index.html";
-}else{
-    getUsers();
-}
+
+getUsers();
+
 async function getUsers(){
 
     let response = await fetch(`${apiUrl}/users`, {
@@ -30,12 +27,13 @@ function populateTable(data){
 
         tdId.innerHTML = user.id;
         tdUsername.innerHTML = user.username;
-        tdRole.innerHTML = user.role;
-
+        tdRole.innerHTML = user.role.user_role;
+        if(tdRole.innerHTML == 'employee'){
         tr.append(tdId);
         tr.append(tdUsername);
         tr.append(tdRole);
 
         tableBody.append(tr);
+        }
     });
 }

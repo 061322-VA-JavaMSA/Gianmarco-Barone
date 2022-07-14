@@ -15,7 +15,7 @@ public interface ReimbursementDao {
 	Reimbursement getReimbursementByUsername(String username);
 	List<Reimbursement> getReimbursements();
 	List<Reimbursement>  getByAuthor(User u);
-	boolean setStatusByID(int id,User resolver, ReimbursementStatus status);
+	boolean setStatusByID(int id,User resolver, ReimbursementStatus reimbursementStatus);
 
 
 }

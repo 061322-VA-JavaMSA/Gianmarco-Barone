@@ -68,21 +68,20 @@ public class UserServlet extends HttpServlet {
 			pw.close();
 			
 		} else {
-			// /1, /11, /{some-value}
-			// Have to remove "/" to get the id to be retrieved
+		
 			int id = Integer.parseInt(pathInfo.substring(1));
 
 			try (PrintWriter pw = res.getWriter()) {
-				// retrieve user by id
+		
 				User u = us.getUserById(id);
 				UserDto uDTO = new UserDto(u);
 
-				// convert user to JSON and write to response body
+		
 				pw.write(om.writeValueAsString(uDTO));
 
 				res.setStatus(200);
 			} catch (UserNotFoundException e) {
-				// return 404, user not found
+		
 				res.setStatus(404);
 				e.printStackTrace();
 			}

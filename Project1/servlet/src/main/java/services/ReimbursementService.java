@@ -9,11 +9,12 @@ import daos.ReimbursementStatusHibernate;
 import daos.UserDao;
 import daos.UserHibernate;
 import exceptions.ReimbursementNotCreatedException;
+import exceptions.ReimbursementNotFoundException;
+import exceptions.ReimbursementNotUpdatedException;
 import exceptions.UserNotFoundException;
 import models.Reimbursement;
 import models.ReimbursementStatus;
 import models.User;
-import servlets.ReimbursementNotFoundException;
 
 public class ReimbursementService {
 	
@@ -46,9 +47,16 @@ public class ReimbursementService {
 		return status;
 	}
 
-	public boolean setStatusByID(int id, int user_id, String status_txt) throws ReimbursementNotFoundException {
-		ReimbursementStatus rs = rsd.get(status_txt);
-		User user = ud.getUserById(user_id);
-		return rd.setStatusByID(id, user, rs);
+	public boolean setStatusByID(int id, int user_id, String status) throws ReimbursementNotUpdatedException {
+ 		ReimbursementStatus rs = rsd.getReimbursementByStatus(status);
+ 		User user = ud.getUserById(user_id);
+		boolean checkUpdate = rd.setStatusByID(id, user, rs);
+		if (checkUpdate == false) {
+			throw new ReimbursementNotUpdatedException();
+		}		 
+		return checkUpdate;
 	}
-}
+		
+		
+	}
+

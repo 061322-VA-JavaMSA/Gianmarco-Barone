@@ -90,6 +90,12 @@ public class ReimbursementDto {
 	public void setReimbursementType(ReimbursementType reimbursementType) {
 		this.reimbursementType = reimbursementType;
 	}
+	@Override
+	public String toString() {
+		return "ReimbursementDto [id=" + id + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
+				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
+				+ ", reimbursementStatus=" + reimbursementStatus + ", reimbursementType=" + reimbursementType + "]";
+	}
 	
 	
 	

@@ -14,8 +14,8 @@ public class ReimbursementStatus {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="reimbursement_status_id")
 	private int id;
-	@Column(name="reimbursement_status")
-	private String reimbursementStatus;
+	@Column 
+	private String reim_status;
 	
 	
 	
@@ -25,13 +25,17 @@ public class ReimbursementStatus {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getReimbursementStatus() {
-		return reimbursementStatus;
+	public String getReim_status() {
+		return reim_status;
 	}
-	public void setReimbursementStatus(String reimbursementStatus) {
-		this.reimbursementStatus = reimbursementStatus;
+	public void setReim_status(String reim_status) {
+		this.reim_status = reim_status;
 	}
-	
+	@Override
+	public String toString() {
+		return "ReimbursementStatus [id=" + id + ", reim_status=" + reim_status + "]";
+	}
+ 
 	
 
 }

@@ -1,5 +1,5 @@
 // if no users are logged in/ user logged in is not admin, redirects to homepage 
-if(!principal || principal.role !== 'ADMIN'){
+if(!principal || principal.role !== 'manager'){
     window.location.href="./index.html";
 }else{
     getUsers();

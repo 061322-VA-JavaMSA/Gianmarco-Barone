@@ -117,27 +117,35 @@ public class ReimbursementServlet extends HttpServlet {
 	}
 	protected void doPut(HttpServletRequest req, HttpServletResponse res) throws StreamReadException, DatabindException, IOException {
 		CorsFix.addCorsHeader(req.getRequestURI(), res);
-		res.addHeader("Content-Type", "application/json");
-		InputStream reqBody = req.getInputStream();
 		String pathInfo = req.getPathInfo();
-		
-		CreateReimbursementDto crd = om.readValue(reqBody, CreateReimbursementDto.class);
+		InputStream reqBody = req.getInputStream();
+
+		reimbursementStatusUpdateDto statusDTO = om.readValue(reqBody, reimbursementStatusUpdateDto.class);
 		int id = Integer.parseInt(pathInfo.substring(1));
-		crd.setId(id);
-	
-	
+
 		try {
-			ReimbursementDto rd = new ReimbursementDto(rs.getReimbursementById(id));
-			rs.getReimbursementStatusById(id);
+ 
+			ReimbursementDto reimDTO = new ReimbursementDto(rs.getReimbursementById(id));
+ 			rs.setStatusByID(id,statusDTO.getResolver_id() , statusDTO.getStatus());
 			
+			try (PrintWriter pw = res.getWriter()) {
+				reimDTO = new ReimbursementDto(rs.getReimbursementById(id));
+				pw.write(om.writeValueAsString(reimDTO));
+					res.setStatus(200);
+					pw.close();
+			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("error");
+		}
+		
+		
+		
 		}
 		
  						
  		
-			}
+			
 
 		
 		

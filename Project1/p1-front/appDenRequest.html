@@ -15,19 +15,37 @@
         </ul>
 
     </nav>
+    <tr>
+        <p>Select A Reimbursement Id</p>
+        <input id="reimbursementId" type="number">
+        <label for="approve">Please Enter accepted or rejected</label>
+        <input type="text" id="des">
+        <button type="submit" id="submit">Submit</button>
+        
+    </tr>
+    <br>
+    <br>
+    <br>
+    <br>
     <main class="container-fluid mx-auto " style="padding: 0 7.5em;">
         <br>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Role</th>
+                    <th scope="col">amount</th>
+                    <th scope="col">submitted</th>
+                    <th scope="col">description</th>
+                    <th scope="col">author</th>
+                    <th scope="col">status</th>
+                    <th scope="col">type</th>
                 </tr>
             </thead>
-            <tbody id="users-tbody">
+            <tbody id="reimbursement-tbody">
             </tbody>
         </table>
+       
+        
     </main>
     <footer>
  
@@ -37,7 +55,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="main.js"></script>
-    <script src="allEmployees.js"></script>
+    <script src="appDenRequest.js"></script>
 </body>
 
 </html>

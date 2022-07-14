@@ -10,31 +10,38 @@ import models.User;
 public class reimbursementStatusUpdateDto {
 	
 	private int id;
-	private User resolver;
-	private ReimbursementStatus  reimbursementStatus;
+	private int resolver_id;
+	private String status;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public User getResolver() {
-		return resolver;
+	public int getResolver_id() {
+		return resolver_id;
 	}
-	public void setResolver(User resolver) {
-		this.resolver = resolver;
+	public void setResolver_id(int resolver_id) {
+		this.resolver_id = resolver_id;
 	}
-	public ReimbursementStatus getReimbursementStatus() {
-		return reimbursementStatus;
+	public String getStatus() {
+		return status;
 	}
-	public void setReimbursementStatus(ReimbursementStatus reimbursementStatus) {
-		this.reimbursementStatus = reimbursementStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	@Override
 	public String toString() {
-		return "reimbursementStatusUpdateDto [id=" + id + ", resolver=" + resolver + ", reimbursementStatus="
-				+ reimbursementStatus + "]";
+		return "reimbursementStatusUpdateDto [id=" + id + ", resolver_id=" + resolver_id + ", status=" + status + "]";
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
