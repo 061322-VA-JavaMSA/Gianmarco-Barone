@@ -31,12 +31,12 @@ insert into users (username, password, first_name,last_name,email, role_id) valu
 drop table if exists reimbursement_status cascade
 create table if not exists reimbursement_status(
 reimbursement_status_id serial primary key,
-reimbursement_status varchar(30) default 'pending'
+reim_status varchar(30) default 'pending'
 );
 
-insert into reimbursement_status (reimbursement_status) values('accepted');
-insert into reimbursement_status (reimbursement_status) values('rejected');
-insert into reimbursement_status (reimbursement_status) values('pending');
+insert into reimbursement_status (reim_status) values('accepted');
+insert into reimbursement_status (reim_status) values('rejected');
+insert into reimbursement_status (reim_status) values('pending');
 
 
 

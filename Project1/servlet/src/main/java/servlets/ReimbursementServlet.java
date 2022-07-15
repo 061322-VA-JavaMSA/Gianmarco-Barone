@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +35,7 @@ import services.UserService;
 import util.CorsFix;
 
 public class ReimbursementServlet extends HttpServlet {
-	
+	private static Logger log = LogManager.getLogger(ReimbursementServlet.class);
 	private static final long serialVersionUID = 1L;
 	private UserService us = new UserService();
 	private ReimbursementService rs = new ReimbursementService();
@@ -54,29 +57,28 @@ public class ReimbursementServlet extends HttpServlet {
 			List<Reimbursement> reimbursement = rs.getReimbursements();
 			List<ReimbursementDto> reimbursementDto = new ArrayList<>();
 
-			// converting Users to UserDTOs for data transfer
+
 			reimbursement.forEach(r -> reimbursementDto.add(new ReimbursementDto(r)));
 
-			// retrieving print writer to write to the Response body
+
 			PrintWriter pw = res.getWriter();
-			// writing toString representation of Users to body
+			
 			pw.write(om.writeValueAsString(reimbursementDto));
 
 			pw.close();
 			
 		} else {
-			// /1, /11, /{some-value}
-			// Have to remove "/" to get the id to be retrieved
+		
 			int id = Integer.parseInt(pathInfo.substring(1));
 
 			try (PrintWriter pw = res.getWriter()) {
-				// retrieve user by id
+
 				Reimbursement r = rs.getReimbursementById(id);
 				ReimbursementDto rDto = new ReimbursementDto(r);
 
-				// convert user to JSON and write to response body
-				pw.write(om.writeValueAsString(rDto));
 
+				pw.write(om.writeValueAsString(rDto));
+				log.info("Request Received");
 				res.setStatus(200);
 			} catch (UserNotFoundException e) {
 				// return 404, user not found
@@ -108,6 +110,7 @@ public class ReimbursementServlet extends HttpServlet {
 			try(PrintWriter pw = res.getWriter()){
 				pw.write(1);
 				res.setStatus(200);
+				log.info("Reimbursement request created");
 			}
 			
 		} catch (Exception e) {

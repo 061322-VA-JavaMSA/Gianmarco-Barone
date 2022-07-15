@@ -16,14 +16,15 @@ import exceptions.LoginException;
 import exceptions.UserNotFoundException;
 import models.User;
 import services.AuthService;
+import services.UserService;
 import util.CorsFix;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class AuthServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
+	private static Logger log = LogManager.getLogger(AuthServlet.class);
 	private static final long serialVersionUID = 1L;
 	private AuthService as = new AuthService();
 	private ObjectMapper om = new ObjectMapper();
@@ -52,8 +53,11 @@ public class AuthServlet extends HttpServlet {
 			}
 
 		} catch (UserNotFoundException | LoginException e) {
+			
 			res.sendError(400, "Login unsuccessful.");
+			log.info("UNAUTHORIZED USER");
 			e.printStackTrace();
+			 
 		} 
 	}
 	
